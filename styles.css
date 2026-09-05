@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 7.5rem 1fr;
+    grid-template-areas: 
+        'title'
+        'cards';
+}
+
+#title {
+    grid-area: title;
+    background-color: aqua;
+}
+
+#cards {
+    padding: 1rem;
+    grid-area: cards;
+    background-color: brown;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 400px));
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+#cards div {
+    height: 150px;
+    padding: 1.5rem;
+    color: rgb(33, 95, 33);
+    background-color: yellow;
+}
+
+#cards #book-title {
+    color: rgb(211, 131, 26);
+    background-color: blueviolet;
+    font-size: 1.5rem;
+    
+}
