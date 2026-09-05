@@ -26,7 +26,7 @@ addBookToLibrary('The Alchemist', 'Paulo Coelho', 1988, 208, false);
 addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', 1960, 281, true);
 addBookToLibrary('Dune', 'Frank Herbert', 1965, 412, false);
 addBookToLibrary('Don Quixote', 'Miguel de Cervantes', 1605, 863, true);
-addBookToLibrary('The Little Prince', 'Antoine de Saint-Exupéry', 1943, 96, true);
+addBookToLibrary('The Little Prince', 'Antoine de Saint-Exupéry', 1943, 96, false);
 addBookToLibrary('Fahrenheit 451', 'Ray Bradbury', 1953, 158, false);
 addBookToLibrary('The Great Gatsby', 'F. Scott Fitzgerald', 1925, 180, true);
 console.log(myLibrary);
@@ -34,9 +34,44 @@ console.log(myLibrary);
 
 for (let newbook of myLibrary) {
     let card = document.createElement('div');
+    card.id = 'card';
     cards.appendChild(card);
+
+    let cover = document.createElement('img');
+    cover.src = '/covers/default-cover.jpg'
+    cover.id = 'cover';
+    card.appendChild(cover);
+
+    let info = document.createElement('div')
+    info.id = 'info';
+    card.appendChild(info);
+
     let bookTitle = document.createElement('span');
     bookTitle.id = 'book-title';
     bookTitle.textContent = `${newbook.title}`
-    card.appendChild(bookTitle);
+    info.appendChild(bookTitle);
+    
+    let bookYear = document.createElement('div');
+    bookYear.id = 'book-year';
+    bookYear.textContent = `${newbook.year}`
+    info.appendChild(bookYear);
+
+    let bookInfo = document.createElement('p');
+    bookInfo.id = 'book-info';
+    bookInfo.textContent = `The author of this book is ${newbook.author}. It contains ${newbook.pages} pages. Congratulations for keeping reading with us. Let's go for more!`;
+    info.appendChild(bookInfo);
+
+    let status = document.createElement('div')
+    status.id = 'status';
+    let statusText = document.createElement('p')
+    statusText.id = 'status-text';
+    if (newbook.wasRead) {
+        status.style.backgroundColor = 'green';
+        statusText.textContent = 'You read this book!'
+    } else {
+        status.style.backgroundColor = 'red';
+        statusText.textContent = 'You did not this book... yet.'
+    }
+    card.appendChild(status);
+    status.appendChild(statusText);
 }
