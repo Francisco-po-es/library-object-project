@@ -31,54 +31,10 @@ addBookToLibrary('Fahrenheit 451', 'Ray Bradbury', 1953, 158, false);
 addBookToLibrary('The Great Gatsby', 'F. Scott Fitzgerald', 1925, 180, true);
 console.log(myLibrary);
 
-
-for (let newbook of myLibrary) {
-    let card = document.createElement('div');
-    card.id = 'card';
-    cards.appendChild(card);
-
-    let cover = document.createElement('img');
-    cover.src = '/covers/default-cover.jpg'
-    cover.id = 'cover';
-    card.appendChild(cover);
-
-    let info = document.createElement('div')
-    info.id = 'info';
-    card.appendChild(info);
-
-    let bookTitle = document.createElement('span');
-    bookTitle.id = 'book-title';
-    bookTitle.textContent = `${newbook.title}`
-    info.appendChild(bookTitle);
-    
-    let bookYear = document.createElement('div');
-    bookYear.id = 'book-year';
-    bookYear.textContent = `${newbook.year}`
-    info.appendChild(bookYear);
-
-    let bookInfo = document.createElement('p');
-    bookInfo.id = 'book-info';
-    bookInfo.textContent = `The author of this book is ${newbook.author}. It contains ${newbook.pages} pages. Congratulations for keeping reading with us. Let's go for more!`;
-    info.appendChild(bookInfo);
-
-    let status = document.createElement('div')
-    status.id = 'status';
-    let statusText = document.createElement('p')
-    statusText.id = 'status-text';
-    if (newbook.wasRead) {
-        status.style.backgroundColor = 'green';
-        statusText.textContent = 'You read this book!'
-    } else {
-        status.style.backgroundColor = 'red';
-        statusText.textContent = 'You have not read this book... yet.'
-    }
-    card.appendChild(status);
-    status.appendChild(statusText);
-}
-
 let modal = document.getElementById('modal');
 let buttonOpen = document.getElementById('buttonAdd');
 let buttonClose = document.getElementById('buttonCancel');
+let buttonCreate = document.getElementById('buttonCreate')
 
 buttonOpen.addEventListener('click', () => {
     modal.showModal();
@@ -86,3 +42,67 @@ buttonOpen.addEventListener('click', () => {
 buttonClose.addEventListener('click', () => {
     modal.close();
 })
+
+buttonCreate.addEventListener('click', (e) => {
+    e.preventDefault();
+    let newTitle = document.querySelector('.title-newbook').value;
+    let newAuthor = document.querySelector('.author-newbook').value;
+    let newYear = parseInt(document.querySelector('.year-newbook').value);
+    let newPages = parseInt(document.querySelector('.pages-newbook').value);
+    let status = document.querySelector('.status-newbook').checked;
+    addBookToLibrary(newTitle, newAuthor, newYear, newPages, status);
+    addCards(myLibrary);
+    modal.close();
+})
+
+function addCards(Library) {
+    cards.innerHTML = '';
+    for (let newbook of Library) {
+        let card = document.createElement('div');
+        card.id = 'card';
+        cards.appendChild(card);
+
+        let cover = document.createElement('img');
+        cover.src = '/covers/default-cover.jpg'
+        cover.id = 'cover';
+        card.appendChild(cover);
+
+        let info = document.createElement('div')
+        info.id = 'info';
+        card.appendChild(info);
+
+        let bookTitle = document.createElement('span');
+        bookTitle.id = 'book-title';
+        bookTitle.textContent = `${newbook.title}`
+        info.appendChild(bookTitle);
+        
+        let bookYear = document.createElement('div');
+        bookYear.id = 'book-year';
+        bookYear.textContent = `${newbook.year}`
+        info.appendChild(bookYear);
+
+        let bookInfo = document.createElement('p');
+        bookInfo.id = 'book-info';
+        bookInfo.textContent = `The author of this book is ${newbook.author}. It contains ${newbook.pages} pages. Congratulations for keeping reading with us. Let's go for more!`;
+        info.appendChild(bookInfo);
+
+        let status = document.createElement('div')
+        status.id = 'status';
+        let statusText = document.createElement('p')
+        statusText.id = 'status-text';
+        if (newbook.wasRead) {
+            status.style.backgroundColor = 'green';
+            statusText.textContent = 'You read this book!'
+        } else {
+            status.style.backgroundColor = 'red';
+            statusText.textContent = 'You have not read this book... yet.'
+        }
+        card.appendChild(status);
+        status.appendChild(statusText);
+    }
+}
+
+addCards(myLibrary);
+
+
+
