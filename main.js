@@ -70,7 +70,7 @@ for (let newbook of myLibrary) {
         statusText.textContent = 'You read this book!'
     } else {
         status.style.backgroundColor = 'red';
-        statusText.textContent = 'You did not this book... yet.'
+        statusText.textContent = 'You have not read this book... yet.'
     }
     card.appendChild(status);
     status.appendChild(statusText);
