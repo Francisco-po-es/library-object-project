@@ -8,7 +8,40 @@
 </head>
 <body>
     <div class="container">
-        <div id="title"></div>
+        <div id="header">
+            <div id="title"></div>
+            <button id="buttonAdd">Add book</button>
+            <dialog id="modal">
+                <form action="main.js" method="post">
+                    <div class="form-title">
+                        <label for="title-newbook">Title:</label>
+                        <input type="text" name="title-newbook" class="title-newbook" required>
+                    </div>
+                    <div class="form-author">
+                        <label for="author-newbook">Author:</label>
+                        <input type="text" name="author-newbook" class="author-newbook" required>
+                    </div>
+                    <div class="form-year">
+                        <label for="year-newbook">Year:</label>
+                        <input type="text" maxlength="4" name="year-newbook" class="year-newbook" required>
+                    </div>
+                    <div class="form-pages">
+                        <label for="pages-newbook">Pages:</label>
+                        <input type="number" name="pages-newbook" class="pages-newbook" required>
+                    </div>
+                    <div class="form-cover">
+                        <label for="cover-newbook">Choose your new book's cover!</label>
+                        <input type="file" name="cover-newbook" class="cover-newbook" accept="image/*">
+                    </div>
+                    <div class="form-status">
+                        <input type="checkbox" name="status-newbook" class="status-newbook">
+                        <label for="status-newbook">I read this book.</label>
+                    </div>
+                    <button type="submit" id="buttonCreate">Create</button>
+                    <button formmethod="dialog" id="buttonCancel">Cancel</button>
+                </form>
+            </dialog>
+        </div>
         <div id="cards"></div>
     </div>
     <script src="main.js" defer>

@@ -75,3 +75,14 @@ for (let newbook of myLibrary) {
     card.appendChild(status);
     status.appendChild(statusText);
 }
+
+let modal = document.getElementById('modal');
+let buttonOpen = document.getElementById('buttonAdd');
+let buttonClose = document.getElementById('buttonCancel');
+
+buttonOpen.addEventListener('click', () => {
+    modal.showModal();
+});
+buttonClose.addEventListener('click', () => {
+    modal.close();
+})
