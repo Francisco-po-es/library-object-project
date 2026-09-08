@@ -62,7 +62,7 @@ function addCards(Library) {
         cards.appendChild(card);
 
         let cover = document.createElement('img');
-        cover.src = './covers/default-cover.jpg'
+        cover.src = 'covers/default-cover.jpg'
         cover.id = 'cover';
         card.appendChild(cover);
 
