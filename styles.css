@@ -101,13 +101,14 @@
 
 #book-year {
     grid-area: book-year;
-    background-color: #540b0e;
+    background-color: white;
     border-radius: 0.5rem;
-    color: white;
+    color: black;
     justify-self: self-end;
     align-self: center;
     padding: 0.5rem;
     font-weight: bolder;
+    border: 1px black solid;
 }
 
 #book-info {
@@ -120,16 +121,37 @@
 #status {
     grid-area: status;
     border-radius: 0 0 1rem 1rem;
-    display: grid;
-    justify-content: center;
+    display: flex;
     align-items: center;
+    justify-content: space-around;
+    padding: 0.5rem;
 }
 
+
 #status-text {
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: bolder;
     color: white;
 }
+
+#buttonDelete,
+#toggleReadBtn {
+    background-color: #540b0e;
+    color: white;
+    padding: 0.4rem 0.6rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    font-size: 0.75rem;
+}
+
+#buttonDelete:hover,
+#toggleReadBtn:hover {
+    background-color: #360608;
+    cursor: pointer;
+}
+
+
 
 #modal {
     margin: auto;

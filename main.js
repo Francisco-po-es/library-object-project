@@ -1,7 +1,7 @@
 let cards = document.getElementById('cards');
 /* the rest of the code unorganized */
 
-const myLibrary = [];
+let myLibrary = [];
 
 
 function Book(title, author, year, pages, wasRead) {
@@ -19,15 +19,9 @@ function addBookToLibrary(title, author, year, pages, wasRead) {
 }
 addBookToLibrary('1984', 'George Orwell', 1949, 328, true);
 addBookToLibrary('One Hundred Years of Solitude', 'Gabriel García Márquez', 1967, 417, true);
-addBookToLibrary('The Lord of the Rings', 'J.R.R. Tolkien', 1954, 1178, false);
-addBookToLibrary('Pride and Prejudice', 'Jane Austen', 1813, 279, true);
+addBookToLibrary('Pride and Prejudice', 'Jane Austen', 1813, 279, false);
 addBookToLibrary("Harry Potter and the Sorcerer's Stone", 'J.K. Rowling', 1997, 256, true);
-addBookToLibrary('The Alchemist', 'Paulo Coelho', 1988, 208, false);
-addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', 1960, 281, true);
-addBookToLibrary('Dune', 'Frank Herbert', 1965, 412, false);
-addBookToLibrary('Don Quixote', 'Miguel de Cervantes', 1605, 863, true);
 addBookToLibrary('The Little Prince', 'Antoine de Saint-Exupéry', 1943, 96, false);
-addBookToLibrary('Fahrenheit 451', 'Ray Bradbury', 1953, 158, false);
 addBookToLibrary('The Great Gatsby', 'F. Scott Fitzgerald', 1925, 180, true);
 console.log(myLibrary);
 
@@ -35,6 +29,7 @@ let modal = document.getElementById('modal');
 let buttonOpen = document.getElementById('buttonAdd');
 let buttonClose = document.getElementById('buttonCancel');
 let buttonCreate = document.getElementById('buttonCreate')
+
 
 buttonOpen.addEventListener('click', () => {
     modal.showModal();
@@ -54,6 +49,10 @@ buttonCreate.addEventListener('click', (e) => {
     addCards(myLibrary);
     modal.close();
 })
+
+Book.prototype.toggleRead = function() {
+    this.wasRead = !this.wasRead;
+};
 
 function addCards(Library) {
     cards.innerHTML = '';
@@ -92,13 +91,33 @@ function addCards(Library) {
         statusText.id = 'status-text';
         if (newbook.wasRead) {
             status.style.backgroundColor = 'green';
-            statusText.textContent = 'You read this book!'
+            statusText.textContent = 'Read!'
         } else {
             status.style.backgroundColor = 'red';
-            statusText.textContent = 'You have not read this book... yet.'
+            statusText.textContent = 'Not read... yet.'
         }
         card.appendChild(status);
         status.appendChild(statusText);
+
+        let buttonDelete = document.createElement('button');
+        buttonDelete.id = 'buttonDelete';
+        buttonDelete.textContent = 'Delete Book';
+        buttonDelete.addEventListener('click', () => {
+            myLibrary = myLibrary.filter((deletebook) => deletebook !== newbook);
+            addCards(myLibrary);
+        });
+        status.appendChild(buttonDelete);
+
+        const toggleReadBtn = document.createElement('button');
+        toggleReadBtn.id = 'toggleReadBtn';
+        toggleReadBtn.textContent = 'Change status';
+
+        toggleReadBtn.addEventListener('click', () => {
+            newbook.toggleRead();
+            addCards(Library);
+        });
+
+        status.appendChild(toggleReadBtn);
     }
 }
 
